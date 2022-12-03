@@ -40,26 +40,6 @@
 # )
 
 
-# import mysql.connector
-
-# mydb = mysql.connector.connect(
-#   host="localhost",
-#   user="root",
-#   password="password",
-#   database="mydatabase"
-# )
-
-# mycursor = mydb.cursor()
-
-# mycursor.execute("SELECT * FROM users")
-
-# myresult = mycursor.fetchall()
-# print(myresult)
-
-# for x in myresult:
-#   print(x)
-
-
 import mysql.connector
 
 mydb = mysql.connector.connect(
@@ -71,10 +51,30 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-sql = "INSERT INTO users (user_id, address) VALUES (%s, %s)"
-val = ("John", "Highway 21")
-mycursor.execute(sql, val)
+mycursor.execute("SELECT * FROM Users")
 
-mydb.commit()
+myresult = mycursor.fetchall()
+print(myresult)
 
-print(mycursor.rowcount, "record inserted.")
+for x in myresult:
+  print(x)
+
+
+# import mysql.connector
+
+# mydb = mysql.connector.connect(
+#   host="localhost",
+#   user="root",
+#   password="password",
+#   database="mydatabase"
+# )
+
+# mycursor = mydb.cursor()
+
+# sql = "INSERT INTO Users (name, password) VALUES (%s, %s)"
+# val = ("Yen", "password")
+# mycursor.execute(sql, val)
+
+# mydb.commit()
+
+# print(mycursor.rowcount, "record inserted.")

@@ -19,22 +19,24 @@ def home():
     return "Hello to Yen's Sleeping Tracker Application"
 
 
-@app.route("/add_user")
-def adduser():
-	return redirect(url_for("user", name="Admin!"))  # Now we when we go to /admin we will redirect to user with the argument "Admin!"
+@app.route("/add_user/<user_name>")
+def add_user(user_name):
+    mycursor.execute("SELECT * FROM Users")
+    myresult = mycursor.fetchall()
+    if user_name not in myresult:
+        sql = "INSERT INTO Users (name, password) VALUES (%s, %s)"
+        val = (user_name, "password")
+        mycursor.execute(sql, val)
+        return redirect(url_for("user_list"))
+    else:    
+	    return redirect(url_for("user_list"))  
 
-@app.route("/login", methods=["POST", "GET"])
-def login():
-    if request.method == "POST":
-        user = request.form["nm"]
-        return redirect(url_for("user", usr=user))
-    else:
-        return render_template("login.html")
 
-@app.route("/<usr>")
-def user(usr):
-    return f"<h1>{usr}</h1>"
-	
+@app.route("/user_list")
+def user_list():
+    mycursor.execute("SELECT * FROM Users")
+    myresult = mycursor.fetchall()
+    return myresult 
 
 if __name__ == "__main__":
 	app.run(debug=True, port = 8080, host = '0.0.0.0')
