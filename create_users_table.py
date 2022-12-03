@@ -9,4 +9,4 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-mycursor.execute("CREATE TABLE users (name VARCHAR(255), password VARCHAR(255))")
+mycursor.execute("CREATE TABLE users (user_id INTEGER, name VARCHAR(255), password VARCHAR(255), PRIMARY KEY(user_id))")
