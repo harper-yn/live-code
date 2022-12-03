@@ -1,11 +1,22 @@
+
 from flask import Flask, redirect, url_for, render_template, request
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="password",
+  database="mydatabase"
+)
+
+mycursor = mydb.cursor()
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-#	return render_template("index.html", content = "Testing")
-#	return render_template("index.html", content="Testing", x=4)
+    return "Hello to Yen's Sleeping Tracker Application"
 
 
 @app.route("/admin")
