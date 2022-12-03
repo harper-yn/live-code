@@ -19,8 +19,8 @@ def home():
     return "Hello to Yen's Sleeping Tracker Application"
 
 
-@app.route("/admin")
-def hello_admin():
+@app.route("/add_user")
+def adduser():
 	return redirect(url_for("user", name="Admin!"))  # Now we when we go to /admin we will redirect to user with the argument "Admin!"
 
 @app.route("/login", methods=["POST", "GET"])

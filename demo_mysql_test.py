@@ -30,6 +30,16 @@
 
 
 #try connecting to your db
+# import mysql.connector
+
+# mydb = mysql.connector.connect(
+#   host="localhost",
+#   user="root",
+#   password="password",
+#   database="mydatabase"
+# )
+
+
 import mysql.connector
 
 mydb = mysql.connector.connect(
@@ -38,3 +48,13 @@ mydb = mysql.connector.connect(
   password="password",
   database="mydatabase"
 )
+
+mycursor = mydb.cursor()
+
+mycursor.execute("SELECT * FROM users")
+
+myresult = mycursor.fetchall()
+print(myresult)
+
+for x in myresult:
+  print(x)
